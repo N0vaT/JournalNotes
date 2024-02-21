@@ -1,5 +1,6 @@
 package ru.nova.notesapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -33,8 +34,10 @@ public class Note {
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "check_list_id", referencedColumnName = "checkListId")
 //    private CheckList checkList;
-
-//    private User owner;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "owner_id")
+    @JsonIgnore
+    private User owner;
     @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     @JoinColumn(name = "to_note_id")
     private List<CommentNote> noteComments = new ArrayList<>();

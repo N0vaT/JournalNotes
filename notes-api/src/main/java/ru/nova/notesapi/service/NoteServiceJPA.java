@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.model.Note;
 import ru.nova.notesapi.repository.NoteRepository;
+import ru.nova.notesapi.repository.UserRepository;
 import ru.nova.notesapi.service.util.CopyNotNullField;
 
 import java.time.LocalDateTime;
@@ -26,14 +27,14 @@ public class NoteServiceJPA implements NoteService {
         return noteRepository.findAll(pageRequest).toList();
     }
 
-//    @Override
-//    @Transactional(readOnly = true)
-//    public List<Note> findAllByOwnerId(long userId, int pageNumber, int pageSize, String direction, String sortByField) {
-//        Sort.Direction sortDirection = direction.equals("DESC") ? Sort.Direction.DESC : Sort.Direction.ASC;
-//        Sort sort = Sort.by(sortDirection, sortByField);
-//        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
-//        return noteRepository.findAllByOwnerUserId(userId, pageRequest);
-//    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Note> findAllByOwnerId(long userId, int pageNumber, int pageSize, String direction, String sortByField) {
+        Sort.Direction sortDirection = direction.equals("DESC") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sort = Sort.by(sortDirection, sortByField);
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
+        return noteRepository.findAllByOwnerUserId(userId, pageRequest);
+    }
 
     @Override
     @Transactional(readOnly = true)

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.nova.notesapi.model.Note;
+import ru.nova.notesapi.model.User;
 
 import java.time.LocalDateTime;
 
@@ -17,4 +18,5 @@ public class NoteCreateDTO {
     private LocalDateTime dateOfCreation;
     private Note.VisibilityModifier visibilityModifier;
     private Note.Tag noteTag;
+    private Long ownerId;
 }

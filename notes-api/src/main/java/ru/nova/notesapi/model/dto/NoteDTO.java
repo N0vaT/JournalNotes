@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.nova.notesapi.model.CommentNote;
 import ru.nova.notesapi.model.Note;
+import ru.nova.notesapi.model.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,5 +23,6 @@ public class NoteDTO {
     private LocalDateTime dateOfCreation;
     private Note.VisibilityModifier visibilityModifier;
     private Note.Tag noteTag;
+    private Long ownerId;
     private List<CommentNote> noteComments;
 }

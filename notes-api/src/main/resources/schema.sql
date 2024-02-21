@@ -1,5 +1,13 @@
+DROP TABLE IF EXISTS jn_users;
 DROP TABLE IF EXISTS jn_comments;
 DROP TABLE IF EXISTS jn_notes;
+
+CREATE TABLE IF NOT EXISTS jn_users(
+    user_id serial,
+    user_name varchar(20) NOT NULL,
+    date_of_creation timestamp NOT NULL,
+    PRIMARY KEY (user_id)
+);
 
 CREATE TABLE IF NOT EXISTS jn_notes(
     note_id serial,
@@ -7,7 +15,9 @@ CREATE TABLE IF NOT EXISTS jn_notes(
     date_of_creation timestamp NOT NULL,
     visibility_modifier varchar(10) NOT NULL,
     note_tag varchar(10) NOT NULL,
-    PRIMARY KEY (note_id)
+    owner_id integer NOT NULL,
+    PRIMARY KEY (note_id),
+    CONSTRAINT fk_jn_notes_owner_id FOREIGN KEY (owner_id) REFERENCES jn_users (user_id)
 );
 
 CREATE TABLE IF NOT EXISTS jn_comments(
