@@ -1,11 +1,10 @@
 package ru.nova.notesapi.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.model.Note;
 import ru.nova.notesapi.service.NoteService;
 
@@ -32,4 +31,17 @@ public class NoteController {
         return null;
 //        return ResponseEntity.ok(noteService.findAllByOwnerId(ownerId, pageNumber, pageSize, direction, sortByField));
     }
+
+    @GetMapping("/{noteId}")
+    public ResponseEntity<Note> getNote(@PathVariable long noteId){
+        ResponseEntity<Note> response;
+        try {
+            response = new ResponseEntity<>(noteService.findById(noteId), HttpStatus.OK);
+        }catch (NoteNotFoundException e){
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+
 }

@@ -10,10 +10,6 @@ import javax.persistence.*;
 @DiscriminatorValue("CC")
 @Getter
 @Setter
+@ToString
 public class CommentComment extends Comment{
-//    @MapsId
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(name = "to_comment_id")
-//    @JsonIgnore
-//    private CommentComment comment;
 }

@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.model.Note;
 import ru.nova.notesapi.repository.NoteRepository;
 
@@ -35,7 +36,8 @@ public class NoteServiceJPA implements NoteService {
     @Override
     @Transactional(readOnly = true)
     public Note findById(long noteId) {
-        return null;
+        return noteRepository.findById(noteId)
+                .orElseThrow(() -> new NoteNotFoundException("Note with id - " + noteId + " not found."));
     }
 
     @Override

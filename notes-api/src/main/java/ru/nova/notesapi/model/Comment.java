@@ -11,9 +11,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 @Entity
 @Table(name = "jn_comments")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -28,7 +26,7 @@ public abstract class Comment {
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "to_comment_id")
     private List<CommentComment> comments = new ArrayList<>();
 }

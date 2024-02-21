@@ -35,7 +35,8 @@ public class Note {
 //    private CheckList checkList;
 
 //    private User owner;
-    @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL, mappedBy = "note")
+    @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @JoinColumn(name = "to_note_id")
     private List<CommentNote> noteComments = new ArrayList<>();
     public enum VisibilityModifier{
         EVERYONE, NO_ONE

@@ -2,10 +2,7 @@ package ru.nova.notesapi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -16,9 +13,6 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("CN")
 @Getter
 @Setter
+@ToString
 public class CommentNote extends Comment{
-    @ManyToOne
-    @JoinColumn(name = "to_note_id")
-    @JsonIgnore
-    private Note note;
 }
