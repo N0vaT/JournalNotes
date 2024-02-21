@@ -75,7 +75,8 @@ public class NoteServiceJPA implements NoteService {
 
     @Override
     @Transactional
-    public boolean delete(long inviteId) {
-        return false;
+    public void delete(long noteId) {
+        noteRepository.findById(noteId).orElseThrow(() -> new NoteNotFoundException("Note with id - " + noteId + " not found."));
+        noteRepository.deleteById(noteId);
     }
 }

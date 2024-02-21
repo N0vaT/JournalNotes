@@ -11,5 +11,5 @@ public interface NoteService {
     Note create(Note note);
     Note patchUpdate(Note note, long noteId);
     Note putUpdate(Note note, long noteId);
-    boolean delete(long inviteId);
+    void delete(long inviteId);
 }

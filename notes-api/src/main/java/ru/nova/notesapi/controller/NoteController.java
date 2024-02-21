@@ -83,5 +83,14 @@ public class NoteController {
         return response;
     }
 
+    @DeleteMapping("/{noteId}")
+    public ResponseEntity<Long> deleteNote(@PathVariable long noteId){
+        try {
+            noteService.delete(noteId);
+            return new ResponseEntity<>(noteId, HttpStatus.OK);
+        }catch (NoteNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
