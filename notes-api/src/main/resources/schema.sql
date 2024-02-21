@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS jn_comments;
 DROP TABLE IF EXISTS jn_notes;
 
 CREATE TABLE IF NOT EXISTS jn_notes(
-    note_id serial NOT NULL,
+    note_id serial,
     note_text text NOT NULL,
     date_of_creation timestamp NOT NULL,
     visibility_modifier varchar(10) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS jn_notes(
 );
 
 CREATE TABLE IF NOT EXISTS jn_comments(
-    comment_id serial NOT NULL,
+    comment_id serial,
     C_TYPE varchar(2),
     comment_text varchar NOT NULL,
     date_of_creation timestamp NOT NULL,

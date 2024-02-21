@@ -28,5 +28,5 @@ public abstract class Comment {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "to_comment_id")
-    private List<CommentComment> comments = new ArrayList<>();
+    private List<CommentComment> comments;
 }

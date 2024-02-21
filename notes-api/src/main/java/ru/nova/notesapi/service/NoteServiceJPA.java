@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.model.Note;
 import ru.nova.notesapi.repository.NoteRepository;
+import ru.nova.notesapi.service.util.CopyNotNullField;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -43,13 +45,32 @@ public class NoteServiceJPA implements NoteService {
     @Override
     @Transactional
     public Note create(Note note) {
-        return null;
+        if(note.getDateOfCreation() == null){
+            note.setDateOfCreation(LocalDateTime.now());
+        }
+        if(note.getVisibilityModifier() == null){
+            note.setVisibilityModifier(Note.VisibilityModifier.EVERYONE);
+        }
+        if(note.getNoteTag() == null){
+            note.setNoteTag(Note.Tag.NORMAL);
+        }
+        return noteRepository.save(note);
     }
 
     @Override
     @Transactional
-    public Note update(Note note, long noteId) {
-        return null;
+    public Note patchUpdate(Note note, long noteId) {
+        Note existingNote = noteRepository.findById(noteId).orElseThrow(() -> new NoteNotFoundException("Note with id - " + noteId + " not found."));
+        CopyNotNullField.copyNonNullProperties(note, existingNote);
+        return noteRepository.save(existingNote);
+    }
+
+    @Override
+    @Transactional
+    public Note putUpdate(Note note, long noteId) {
+        noteRepository.findById(noteId).orElseThrow(() -> new NoteNotFoundException("Note with id - " + noteId + " not found."));
+        note.setNoteId(noteId);
+        return noteRepository.save(note);
     }
 
     @Override
