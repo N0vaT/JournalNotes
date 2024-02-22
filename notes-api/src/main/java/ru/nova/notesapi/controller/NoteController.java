@@ -6,9 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.exception.UserNotFoundException;
+import ru.nova.notesapi.model.CommentNote;
 import ru.nova.notesapi.model.Note;
+import ru.nova.notesapi.model.dto.CommentDTO;
 import ru.nova.notesapi.model.dto.NoteDTO;
+import ru.nova.notesapi.model.mapper.CommentMapper;
 import ru.nova.notesapi.model.mapper.NoteMapper;
+import ru.nova.notesapi.service.CommentService;
 import ru.nova.notesapi.service.NoteService;
 import ru.nova.notesapi.service.UserService;
 
@@ -20,7 +24,9 @@ import java.util.List;
 public class NoteController {
     private final NoteService noteService;
     private final UserService userService;
+    private final CommentService commentService;
     private final NoteMapper noteMapper;
+    private final CommentMapper commentMapper;
 
     @GetMapping
     public ResponseEntity<List<NoteDTO>> getNotes(@PathVariable long userId,

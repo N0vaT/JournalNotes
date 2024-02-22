@@ -1,6 +1,7 @@
 package ru.nova.notesapi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -25,6 +26,10 @@ public abstract class Comment {
     private String commentText;
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "owner_id")
+    @JsonIgnore
+    private User owner;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "to_comment_id")

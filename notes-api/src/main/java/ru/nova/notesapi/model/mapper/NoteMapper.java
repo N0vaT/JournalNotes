@@ -1,12 +1,15 @@
 package ru.nova.notesapi.model.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.nova.notesapi.model.Note;
 import ru.nova.notesapi.model.User;
 import ru.nova.notesapi.model.dto.NoteDTO;
 
 @Component
+@RequiredArgsConstructor
 public class NoteMapper {
+    private final CommentMapper commentMapper;
     public NoteDTO toDto(Note note){
         return NoteDTO.builder()
                 .noteId(note.getNoteId())
@@ -15,7 +18,9 @@ public class NoteMapper {
                 .visibilityModifier(note.getVisibilityModifier())
                 .noteTag(note.getNoteTag())
                 .ownerId(note.getOwner().getUserId())
-                .noteComments(note.getNoteComments())
+                .noteComments(note.getNoteComments() == null ? null : note.getNoteComments().stream()
+                        .map(commentMapper::toDto)
+                        .toList())
                 .build();
     }
 
@@ -29,7 +34,9 @@ public class NoteMapper {
                 .owner(User.builder()
                         .userId(noteDTO.getOwnerId())
                         .build())
-                .noteComments(noteDTO.getNoteComments())
+                .noteComments(noteDTO.getNoteComments() == null ? null : noteDTO.getNoteComments().stream()
+                        .map(commentMapper::toCommentNote)
+                        .toList())
                 .build();
     }
 }

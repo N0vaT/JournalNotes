@@ -15,4 +15,8 @@ import javax.persistence.ManyToOne;
 @Setter
 @ToString
 public class CommentNote extends Comment{
+    @ManyToOne
+    @JoinColumn(name = "to_note_id")
+    @JsonIgnore
+    private Note note;
 }

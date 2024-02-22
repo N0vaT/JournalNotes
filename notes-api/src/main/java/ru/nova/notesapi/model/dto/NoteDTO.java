@@ -24,5 +24,5 @@ public class NoteDTO {
     private Note.VisibilityModifier visibilityModifier;
     private Note.Tag noteTag;
     private Long ownerId;
-    private List<CommentNote> noteComments;
+    private List<CommentDTO> noteComments;
 }

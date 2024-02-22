@@ -8,8 +8,8 @@ VALUES  ('Text NOTE', '2023-01-17 16:00:00', 'EVERYONE', 'NORMAL', 1),
         ('SECOND Text NOTE', '2023-01-17 17:00:00', 'EVERYONE', 'NORMAL', 1),
         ('THRID Text NOTE', '2023-01-17 18:00:00', 'EVERYONE', 'NORMAL', 2);
 
-INSERT INTO jn_comments(C_TYPE, comment_text, date_of_creation, to_comment_id, to_note_id)
-VALUES  ('CN', 'first comment text', '2023-01-17 16:00:00', null, 2),
-        ('CN', 'second comment text', '2023-01-17 17:00:00', null, 2),
-        ('CC', 'first first comment text', '2023-01-17 17:00:00', 2, null),
-		('CC', 'first first first comment text', '2023-01-17 17:00:00', 3, null);
+INSERT INTO jn_comments(C_TYPE, comment_text, date_of_creation, owner_id, to_comment_id, to_note_id)
+VALUES  ('CN', 'first comment text', '2023-01-17 16:00:00', 1, null, 2),
+        ('CN', 'second comment text', '2023-01-17 17:00:00', 2, null, 2),
+        ('CC', 'first first comment text', '2023-01-17 17:00:00', 3, 2, null),
+		('CC', 'first first first comment text', '2023-01-17 17:00:00', 1, 3, null);

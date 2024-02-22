@@ -25,9 +25,11 @@ CREATE TABLE IF NOT EXISTS jn_comments(
     C_TYPE varchar(2),
     comment_text varchar NOT NULL,
     date_of_creation timestamp NOT NULL,
+    owner_id integer NOT NULL,
     to_comment_id integer,
     to_note_id integer,
     PRIMARY KEY (comment_id),
+    CONSTRAINT fk_jn_comments_owner_id FOREIGN KEY (owner_id) REFERENCES jn_users (user_id),
     CONSTRAINT fk_jn_comments_comment_id FOREIGN KEY (to_comment_id) REFERENCES jn_comments (comment_id),
     CONSTRAINT fk_jn_notes_note_id FOREIGN KEY (to_note_id) REFERENCES jn_notes (note_id)
 );

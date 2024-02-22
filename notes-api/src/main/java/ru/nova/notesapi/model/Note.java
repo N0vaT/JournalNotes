@@ -38,9 +38,9 @@ public class Note {
     @JoinColumn(name = "owner_id")
     @JsonIgnore
     private User owner;
-    @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
-    @JoinColumn(name = "to_note_id")
-    private List<CommentNote> noteComments = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL, mappedBy = "note")
+//    @JoinColumn(name = "to_note_id")
+    private List<CommentNote> noteComments;
     public enum VisibilityModifier{
         EVERYONE, NO_ONE
     }
