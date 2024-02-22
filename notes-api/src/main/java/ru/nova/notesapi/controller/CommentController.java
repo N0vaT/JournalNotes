@@ -1,18 +1,7 @@
 package ru.nova.notesapi.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.nova.notesapi.exception.NoteNotFoundException;
-import ru.nova.notesapi.model.Note;
-import ru.nova.notesapi.model.dto.NoteCreateDTO;
-import ru.nova.notesapi.model.dto.NoteDTO;
-import ru.nova.notesapi.service.CommentService;
-import ru.nova.notesapi.service.NoteService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/notes-api/v1/notes/{noteId}/comments")

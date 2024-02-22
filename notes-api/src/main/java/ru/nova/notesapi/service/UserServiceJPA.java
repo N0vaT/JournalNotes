@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.exception.UserNotFoundException;
+import ru.nova.notesapi.model.Note;
 import ru.nova.notesapi.model.User;
 import ru.nova.notesapi.repository.UserRepository;
+import ru.nova.notesapi.service.util.CopyNotNullField;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,8 +41,10 @@ public class UserServiceJPA implements UserService{
     }
 
     @Override
-    public User patchUpdate(User User, long userId) {
-        return null;
+    public User patchUpdate(User user, long userId) {
+        User existingUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User with id - " + userId + " not found."));
+        CopyNotNullField.copyNonNullProperties(user, existingUser);
+        return userRepository.save(existingUser);
     }
 
     @Override

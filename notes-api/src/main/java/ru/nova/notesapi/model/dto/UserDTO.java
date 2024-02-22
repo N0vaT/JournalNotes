@@ -5,18 +5,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.nova.notesapi.model.Note;
-import ru.nova.notesapi.model.User;
 
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
-public class NoteCreateDTO {
-    private String noteText;
+public class UserDTO {
+    private Long userId;
+    private String username;
     private LocalDateTime dateOfCreation;
-    private Note.VisibilityModifier visibilityModifier;
-    private Note.Tag noteTag;
-    private Long ownerId;
+    private List<NoteDTO> notes;
 }

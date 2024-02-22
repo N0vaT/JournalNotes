@@ -1,15 +1,12 @@
 package ru.nova.notesapi.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nova.notesapi.exception.NoteNotFoundException;
 import ru.nova.notesapi.exception.UserNotFoundException;
 import ru.nova.notesapi.model.Note;
-import ru.nova.notesapi.model.User;
-import ru.nova.notesapi.model.dto.NoteCreateDTO;
 import ru.nova.notesapi.model.dto.NoteDTO;
 import ru.nova.notesapi.model.mapper.NoteMapper;
 import ru.nova.notesapi.service.NoteService;
@@ -23,7 +20,6 @@ import java.util.List;
 public class NoteController {
     private final NoteService noteService;
     private final UserService userService;
-    private final ModelMapper modelMapper;
     private final NoteMapper noteMapper;
 
     @GetMapping
@@ -88,9 +84,10 @@ public class NoteController {
                                                  @RequestBody NoteDTO noteDTO){
         ResponseEntity<NoteDTO> response;
         try {
-            Note note = noteService.putUpdate(noteMapper.toNote(noteDTO), noteId);
-            response = new ResponseEntity<>(noteMapper.toDto(note), HttpStatus.OK);
-        }catch (NoteNotFoundException e){
+            Note note = noteMapper.toNote(noteDTO);
+            note.setOwner(userService.findById(userId));
+            response = new ResponseEntity<>(noteMapper.toDto(noteService.putUpdate(note, noteId)), HttpStatus.OK);
+        }catch (UserNotFoundException | NoteNotFoundException e){
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return response;

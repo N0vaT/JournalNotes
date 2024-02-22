@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS jn_users;
 DROP TABLE IF EXISTS jn_comments;
 DROP TABLE IF EXISTS jn_notes;
+DROP TABLE IF EXISTS jn_users;
 
 CREATE TABLE IF NOT EXISTS jn_users(
     user_id serial,
