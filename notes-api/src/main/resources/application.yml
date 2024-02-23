@@ -6,7 +6,8 @@ spring:
     name: notes-api
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/jn_notes
+#    url: jdbc:postgresql://localhost:5432/jn_notes
+    url: jdbc:postgresql://notes_api_postgresql_container:5432/jn_notes
     username: postgres
     password: postgres
   jpa:
@@ -16,3 +17,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         show_sql: true
+#  security:
+#    oauth2:
+#      resourceserver:
+#        opaque:
+#          issuer-uri: http://127.0.0.1:9000/oauth2/introspect
+#          client: nb-client
+#          secret: secret
+#        jwt:
+#          issuer-uri: http://127.0.0.1:9000
