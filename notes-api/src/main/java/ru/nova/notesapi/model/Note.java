@@ -31,15 +31,14 @@ public class Note {
     @Column(name = "note_tag")
     @Enumerated(value = EnumType.STRING)
     private Tag noteTag;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "check_list_id", referencedColumnName = "checkListId")
-//    private CheckList checkList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "check_list_id", referencedColumnName = "check_list_id")
+    private CheckList checkList;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "owner_id")
     @JsonIgnore
     private User owner;
     @OneToMany(mappedBy = "note")
-//    @JoinColumn(name = "to_note_id")
     private List<CommentNote> noteComments;
     public enum VisibilityModifier{
         EVERYONE, NO_ONE

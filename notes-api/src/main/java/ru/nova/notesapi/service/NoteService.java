@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NoteService {
     List<Note> findAll(int pageNumber, int pageSize, String direction, String sortByField);
-    List<Note> findAllByOwnerId(long userId, int pageNumber, int pageSize, String direction, String sortByField);
+    List<Note> findAllByOwnerId(long userId, int pageNumber, int pageSize, String direction, String sortByField, String tag);
     Note findById(long noteId);
     Note create(Note note);
     Note patchUpdate(Note note, long noteId);

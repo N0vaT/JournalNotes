@@ -22,9 +22,7 @@ import java.util.List;
 public class NoteController {
     private final NoteService noteService;
     private final UserService userService;
-    private final CommentService commentService;
     private final NoteMapper noteMapper;
-    private final CommentMapper commentMapper;
 
     @GetMapping
     public ResponseEntity<List<NoteDTO>> getNotes(@PathVariable long userId,
@@ -34,7 +32,7 @@ public class NoteController {
                                                   @RequestParam(required = false, defaultValue = "dateOfCreation") String sortByField,
                                                   @RequestParam(required = false) String tags
     ){
-        List<Note> notes = noteService.findAllByOwnerId(userId, pageNumber, pageSize, direction, sortByField);
+        List<Note> notes = noteService.findAllByOwnerId(userId, pageNumber, pageSize, direction, sortByField, tags);
         return ResponseEntity.ok(notes.stream().map(noteMapper::toDto).toList());
     }
 
