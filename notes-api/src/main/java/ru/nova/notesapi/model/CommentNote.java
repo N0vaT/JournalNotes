@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("CN")
@@ -15,7 +12,7 @@ import javax.persistence.ManyToOne;
 @Setter
 @ToString
 public class CommentNote extends Comment{
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "to_note_id")
     @JsonIgnore
     private Note note;
