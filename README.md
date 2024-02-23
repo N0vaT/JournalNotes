@@ -1,3 +1,22 @@
+# Начало работы
+1. Следуйте этим шагам для запуска проекта:
+
+    git clone git@github.com:N0vaT/JournalNotes.git
+    
+    cd JournalNotes
+
+
+2. Соберите и запустите Docker-контейнеры:
+   
+    docker-compose up -d
+
+
+3. Дождитесь развертывания приложения в контейнерах
+
+
+4. После успешного развертывания, вы сможете получить доступ к приложению по следующим адресам:
+
+    http://localhost:8090/...
 ### Users:
 
 | URI                          | HTTP Method | Description              |
