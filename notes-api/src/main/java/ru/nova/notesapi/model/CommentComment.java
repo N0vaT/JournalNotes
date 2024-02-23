@@ -12,4 +12,8 @@ import javax.persistence.*;
 @Setter
 @ToString
 public class CommentComment extends Comment{
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "to_comment_id")
+    @JsonIgnore
+    private Comment comment;
 }

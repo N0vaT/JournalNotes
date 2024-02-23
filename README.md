@@ -25,7 +25,7 @@
 
 ---
 
-## Comments:
+## Comments to the note:
 
 | URI                                               | HTTP Method | Description                |
 |---------------------------------------------------|-------------|----------------------------|
@@ -35,3 +35,14 @@
 | /notes-api/v1/notes/{noteId}/comments/{commentId} | PATCH       | Edit not null filds coment 
 | /notes-api/v1/notes/{noteId}/comments/{commentId} | PUT         | Edit comment               
 | /notes-api/v1/notes/{noteId}/comments/{commentId} | DELETE      | Delete comment             
+
+## Comments to comment:
+
+| URI                                                           | HTTP Method | Description                |
+|---------------------------------------------------------------|-------------|----------------------------|
+| /notes-api/v1/comments/{commentBeforeId}/comments             | GET         | Get all Comments in note   
+| /notes-api/v1/comments/{commentBeforeId}/comments/{commentId} | GET         | Get comment by Id          
+| /notes-api/v1/comments/{commentBeforeId}/comments             | POST        | Create new comment         
+| /notes-api/v1/comments/{commentBeforeId}/comments/{commentId} | PATCH       | Edit not null filds coment   
+| /notes-api/v1/comments/{commentBeforeId}/comments/{commentId} | PUT         | Edit comment               
+| /notes-api/v1/comments/{commentBeforeId}/comments/{commentId} | DELETE      | Delete comment             

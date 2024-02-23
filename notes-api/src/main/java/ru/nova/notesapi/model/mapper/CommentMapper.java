@@ -23,7 +23,7 @@ public class CommentMapper {
         comment.setCommentText(commentDTO.getCommentText());
         comment.setDateOfCreation(commentDTO.getDateOfCreation());
         comment.setOwner(commentDTO.getOwnerId() == null ? null : User.builder()
-                        .userId(commentDTO.getCommentId())
+                        .userId(commentDTO.getOwnerId())
                         .build());
         comment.setComments(commentDTO.getComments() == null ? null : commentDTO.getComments().stream()
                 .map(this::toCommentComment)

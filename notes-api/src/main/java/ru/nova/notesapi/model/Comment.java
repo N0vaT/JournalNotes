@@ -31,7 +31,6 @@ public abstract class Comment {
     @JsonIgnore
     private User owner;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "to_comment_id")
+    @OneToMany(mappedBy = "comment")
     private List<CommentComment> comments;
 }
