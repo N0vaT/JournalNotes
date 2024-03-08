@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-COPY ./notes-api-1.0-SNAPSHOT.jar /app.jar
+COPY ./docker/services/notes-api-1.0-SNAPSHOT.jar /app.jar
 
 EXPOSE 8090
 
